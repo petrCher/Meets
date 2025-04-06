@@ -1,0 +1,7 @@
+services:
+  backend: 
+    image: meet_backend
+    build: 
+      context: ./backend
+    ports:
+      - "8000:8000"

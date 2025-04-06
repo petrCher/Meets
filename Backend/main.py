@@ -7,7 +7,8 @@ app = FastAPI(title="Приложение для знакомств", descriptio
 app.include_router(profile)
 
 # --------------------------
-# cors
+# enable cors, or cross origin request something
+# allows frontend to talk to backend
 from fastapi.middleware.cors import CORSMiddleware
 #
 # app = FastAPI()
@@ -26,5 +27,6 @@ app.add_middleware(
 )
 # --------------------------
 
+# i specified 0.0.0.0 because 127.0.0.1 cannot be reached outside of the docker container
 if __name__ == "__main__":
-    uvicorn.run(app)
+    uvicorn.run(app, port=8000, host='0.0.0.0')
