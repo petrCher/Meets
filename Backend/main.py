@@ -13,9 +13,9 @@ app.include_router(profile)
 #
 # app = FastAPI()
 
-# address of your live-server in quotes
+# address of frontend server in quotes
 origins = [
-    "http://127.0.0.1:5500",
+    "http://frontend:8080",
 ]
 
 app.add_middleware(
@@ -28,5 +28,7 @@ app.add_middleware(
 # --------------------------
 
 # i specified 0.0.0.0 because apparently 127.0.0.1 cannot be reached outside of the docker container
+# update: nah it miraculously worked, dont know why lol
 if __name__ == "__main__":
     uvicorn.run(app, port=8000, host='0.0.0.0')
+    # uvicorn.run(app, port=8000)

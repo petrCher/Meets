@@ -1,5 +1,9 @@
 // Backend local link
-const url = "http://127.0.0.1:8000"
+//const url = "http://127.0.0.1:8000"
+
+// i renamed this to backend_url, i think its clearer, sorry :)
+// ~ moon
+const backend_base_url = "http://backend:8000"
 
 // Common
 // -------------------------------------------------------
@@ -18,7 +22,7 @@ function checkForError(response) {
 export const API = {
   async getProfiles(filters) {
 
-    const response = await fetch(`http://127.0.0.1:8000/api/profiles`, {
+    const response = await fetch(`${backend_base_url}/api/profiles`, {
       method: "GET",
       query: {
         min_age: filters["min_age"],
@@ -36,7 +40,7 @@ export const API = {
   },
 
   async getProfileById(profileId) {
-    const response = await fetch(`http://127.0.0.1:8000/api/profiles/${profileId}`);
+    const response = await fetch(`${backend_base_url}/api/profiles/${profileId}`);
     if (checkForError(response)) return false;
 
     const profileData = await response.json();
@@ -47,7 +51,7 @@ export const API = {
   async registerProfile(formData) {
     // validation если успеем
 
-    const response = await fetch("${url}/api/profiles", { 
+    const response = await fetch(`${backend_base_url}/api/profiles`, {
       method: "POST",
       body: JSON.stringify(formData),
     });
@@ -63,7 +67,7 @@ export const API = {
   // -----------------------------------------------------------------------
 
   async getComments(profileId) {
-    const response = await fetch(`http://127.0.0.1:8000/api/profiles/${profileId}/comments`);
+    const response = await fetch(`${backend_base_url}/api/profiles/${profileId}/comments`);
     if (checkForError(response)) return false;
 
     const data = await response.json();
@@ -71,7 +75,7 @@ export const API = {
   },
 
   async sendComment(profile_id, formData) {
-    const response = await fetch(`http://127.0.0.1:8000/api/profiles/${profile_id}/comments`, {
+    const response = await fetch(`${backend_base_url}/api/profiles/${profile_id}/comments`, {
       method: "POST",
       body: JSON.stringify(formData),
     });
