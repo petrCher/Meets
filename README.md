@@ -18,4 +18,4 @@ docker compose build
 docker compose up
 ```
 
-then go to http://127.0.0.1:8080 to view the website :)
+Then go to http://127.0.0.1:8080 to view the website :)
