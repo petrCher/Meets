@@ -5,8 +5,8 @@ COPY . .
 # dont need to install any modules it does it for us (i think)
 # RUN npm install -g http-server && npm install
 
-# just for debugging, delete later
-RUN apk add --no-cache curl
+# # just for debugging, delete later
+# RUN apk add --no-cache curl
 
 # NOTE: to change the port/host, i think we need to change the exposed port
 EXPOSE 8080
