@@ -17,10 +17,6 @@ const State = {
   currentProfileId: null,
 };
 
-// function showError(message) {
-//   alert(message);
-// }
-
 async function renderProfiles() {
   DOM.profilesContainer.innerHTML = "";
 
@@ -79,7 +75,6 @@ function renderProfileDetails(profile) {
 
 async function renderComments() {
   try {
-    // const comments = await API.getComments(State.currentProfileId);
     const comments = [
       {
         id: 1,

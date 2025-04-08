@@ -30,5 +30,5 @@ app.add_middleware(
 # i specified 0.0.0.0 because apparently 127.0.0.1 cannot be reached outside of the docker container
 # update: nah it miraculously worked, dont know why lol
 if __name__ == "__main__":
-    uvicorn.run(app, port=8000, host='0.0.0.0')
     # uvicorn.run(app, port=8000)
+    uvicorn.run(app, port=8000, host='0.0.0.0')
