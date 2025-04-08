@@ -3,10 +3,11 @@ from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 from dotenv import find_dotenv, load_dotenv, dotenv_values
 
-load_dotenv(find_dotenv(".env"))
-config = dotenv_values()
+# load_dotenv(find_dotenv(".env"))
+# config = dotenv_values()
 
-engine = create_engine(config["DB_DSN"])
+# engine = create_engine(config["DB_DSN"])
+engine = create_engine("postgresql://postgres:12345@db:5432")
 db_session: Session = sessionmaker(bind=engine)
 Base = declarative_base()
 

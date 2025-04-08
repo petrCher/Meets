@@ -1,8 +1,3 @@
-// Backend local link
-//const url = "http://127.0.0.1:8000"
-
-// i renamed this to backend_url, i think its clearer, sorry :)
-// ~ moon
 const backend_base_url = "http://backend:8000"
 
 // Common

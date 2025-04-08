@@ -2,27 +2,40 @@ services:
   backend: 
     image: meet-backend
     build: ./Backend
+    # open this only for development purposes, i think
     ports:
       - 8000:8000
+    depends_on:
+      db:
+        condition: service_healthy
   frontend:
     image: meet-frontend
     build: ./Frontend
+    # host network port : internal network port
+    # this needs to be opened for the website to be accesible
     ports:
       - 8080:8080
-  # db:
-  #   image: postgres:16-alpine
-  #   environment:
-  #     # - PGUSER=${DB_USER}
-  #     - POSTGRES_USER=${DB_USER}
-  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
-  #     # - POSTGRES_DB=${DB_NAME}
-  #     # - POSTGRES_DB=app
-  #     # - POSTGRES_USER=postgres
-  #     # - POSTGRES_PASSWORD=supersecretpassword
-  #   ports:
-  #     - 5432:5432
-  #   volumes:
-  #     - db-data:/var/lib/postgresql/data
+    depends_on:
+      - backend
+  db:
+    image: postgres:16-alpine
+    environment:
+      # - POSTGRES_USER=${DB_USER}
+      # - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+    # again, open this only for development purposes
+    # ports:
+    #   - 5432:5432
+    volumes:
+      - db-data-3:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d postgres" ]
+      interval: 1s
+      timeout: 1s
+      retries: 5
 
-# volumes:
-#   db-data:
+# TODO: understand this shit properly, where is the volume stored?
+volumes:
+  db-data-3:
