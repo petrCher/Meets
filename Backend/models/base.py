@@ -1,13 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
-from settings import get_settings, Settings
 from dotenv import find_dotenv, load_dotenv, dotenv_values
 
 load_dotenv(find_dotenv(".env"))
 config = dotenv_values()
-
-settings: Settings = get_settings()
 
 engine = create_engine(config["DB_DSN"])
 db_session: Session = sessionmaker(bind=engine)

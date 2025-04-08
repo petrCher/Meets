@@ -26,6 +26,11 @@ class ProfilePost(BaseModel):
     interests: str
     contact: str
 
+# # for debugging purposes
+# @profile.get("/backend-healthcheck")
+# def get_healthcheck():
+#     return "healthy"
+
 @profile.get("")
 def get_profiles(
     gender: str | None = None,
